@@ -1,5 +1,5 @@
-SimpleUDPMulticastChat
-======================
+SimpleUDPMulticastChat 1337z
+============================
 Simple Lan Party UDP Multicast Chat Client with GUI based on Java &amp; Swing.
 **Tested on Mac OSX 10.8.4 & Windows 7**
 
