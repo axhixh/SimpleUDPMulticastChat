@@ -15,4 +15,4 @@ Screenshot
 
 Where can I get it?
 ==============
-The runnable .jar can be [downloaded here](jan.2freunde.org/downloads/udp-chat-client.jar).
+The runnable .jar can be [downloaded here](http;//jan.2freunde.org/downloads/udp-chat-client.jar).
