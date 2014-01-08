@@ -9,6 +9,8 @@ import com.zweifreunde.org.client.view.ClientInputView;
 import com.zweifreunde.org.client.view.ClientMessageView;
 import com.zweifreunde.org.client.view.ClientWindow;
 import com.zweifreunde.org.multicast.UDPMulticastClient;
+import java.text.MessageFormat;
+import java.util.ResourceBundle;
 
 public class Client {
 
@@ -29,6 +31,7 @@ public class Client {
         // UDP Multicast
         UDPMulticastClient client = new UDPMulticastClient(clientModel, 1337);
         client.startListening();
-        client.sendMessage(clientModel.getName() + " has joined.");
+        String hasJoinedMessage = ResourceBundle.getBundle("com/zweifreunde/etc/Messages").getString("joined");
+        client.sendMessage(MessageFormat.format(hasJoinedMessage, clientModel.getName()));
     }
 }

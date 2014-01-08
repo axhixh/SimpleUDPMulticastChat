@@ -3,6 +3,7 @@ package com.zweifreunde.org.client.view;
 import java.awt.BorderLayout;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.util.ResourceBundle;
 
 import javax.swing.JFrame;
 
@@ -11,7 +12,7 @@ public class ClientWindow extends JFrame {
 	 * 
 	 */
 	private static final long serialVersionUID = 1337L;
-	private static final String TITLE = "1337z Chat Client";
+    private static final String TITLE = ResourceBundle.getBundle("com/zweifreunde/etc/Messages").getString("watercooler");
 
 	public ClientWindow(ClientInputView civ, ClientMessageView cmv) {
 		// Setting the Layout

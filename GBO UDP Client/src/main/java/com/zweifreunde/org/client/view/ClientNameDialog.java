@@ -1,5 +1,6 @@
 package com.zweifreunde.org.client.view;
 
+import java.util.ResourceBundle;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 
@@ -7,9 +8,9 @@ public class ClientNameDialog extends JDialog {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1337L;;
-	private static final Object QUESTION = "Wie ist dein Name?";
-	private static final String TITLE = "Login";
+    private static final long serialVersionUID = 1337L;
+    private static final Object QUESTION = ResourceBundle.getBundle("com/zweifreunde/etc/Messages").getString("What is your name?");
+    private static final String TITLE = ResourceBundle.getBundle("com/zweifreunde/etc/Messages").getString("LOGIN");
 	private ClientWindow window;
 
 	public ClientNameDialog(ClientWindow window) {
