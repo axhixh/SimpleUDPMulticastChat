@@ -49,15 +49,15 @@ public class UDPMulticastClient implements SendMessageListener {
 					try {
 						socket.receive(read);
 					} catch (IOException e) {
-						System.out.println("Fehler beim Emfangen.");
+						System.out.println("Error receiving.");
 					}
 					String msg = new String(read.getData());
-					// model.newMessage(msg);
 					SwingUtilities.invokeLater(new MsgRunnable(model, msg));
 				}
 
 			}
 		});
+        thread.setDaemon(true)
 		thread.start();
 
 	}
