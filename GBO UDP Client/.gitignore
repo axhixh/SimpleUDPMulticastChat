@@ -2,8 +2,11 @@
 /build/
 /bin/
 target/
+.settings
  
 # OS Files #
 .DS_Store
  
 *.class
+.classpath
+.project
