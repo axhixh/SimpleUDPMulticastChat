@@ -9,15 +9,13 @@ import com.zweifreunde.org.client.view.ClientInputView;
 import com.zweifreunde.org.client.view.ClientMessageView;
 import com.zweifreunde.org.client.view.ClientWindow;
 import com.zweifreunde.org.multicast.UDPMulticastClient;
-import java.text.MessageFormat;
-import java.util.ResourceBundle;
 
 public class Client {
 
     public static void main(String[] args) throws NotBoundException,
             IOException {
 
-        ClientModel clientModel = new ClientModel();
+        final ClientModel clientModel = new ClientModel();
 
         ClientInputView civ = new ClientInputView();
         ClientMessageView cmv = new ClientMessageView();
@@ -29,9 +27,8 @@ public class Client {
         clientModel.addNewMessageListener(cmv);
 
         // UDP Multicast
-        UDPMulticastClient client = new UDPMulticastClient(clientModel, 1337);
+        final UDPMulticastClient client = new UDPMulticastClient(clientModel, 1337);
         client.startListening();
-        String hasJoinedMessage = ResourceBundle.getBundle("com/zweifreunde/etc/Messages").getString("joined");
-        client.sendMessage(MessageFormat.format(hasJoinedMessage, clientModel.getName()));
+        clientModel.sendHello();
     }
 }
