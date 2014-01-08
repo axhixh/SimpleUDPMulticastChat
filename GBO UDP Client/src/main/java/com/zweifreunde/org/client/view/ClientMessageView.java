@@ -41,6 +41,7 @@ public class ClientMessageView extends JScrollPane implements
     private void addMessage(String msg) {
         try {
             this.kit.insertHTML(doc, doc.getLength(), msg, 0, 0, null);
+            textArea.setCaretPosition(textArea.getDocument().getLength());
         } catch (BadLocationException | IOException e) {
         }
     }
