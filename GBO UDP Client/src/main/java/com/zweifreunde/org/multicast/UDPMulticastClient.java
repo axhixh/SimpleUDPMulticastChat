@@ -18,7 +18,7 @@ public class UDPMulticastClient implements SendMessageListener {
     private ClientModel model;
 
     public UDPMulticastClient(ClientModel model, int port) throws IOException {
-        this.socket = new MulticastSocket(1337);
+        this.socket = new MulticastSocket(port);
         this.addr = InetAddress.getByName("238.254.254.254");
         this.port = port;
         this.socket.joinGroup(this.addr);
@@ -33,8 +33,7 @@ public class UDPMulticastClient implements SendMessageListener {
         try {
             this.socket.send(packet);
         } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+            System.err.println("Error sending.");
         }
     }
 
@@ -49,7 +48,7 @@ public class UDPMulticastClient implements SendMessageListener {
                     try {
                         socket.receive(read);
                     } catch (IOException e) {
-                        System.out.println("Error receiving.");
+                        System.err.println("Error receiving.");
                     }
                     String msg = new String(read.getData());
                     SwingUtilities.invokeLater(new MsgRunnable(model, msg));
@@ -75,8 +74,6 @@ public class UDPMulticastClient implements SendMessageListener {
         @Override
         public void run() {
             this.model.newMessage(this.msg.trim());
-
         }
-
     }
 }
