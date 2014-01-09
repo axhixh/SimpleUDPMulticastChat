@@ -53,7 +53,7 @@ public class ClientModel {
             return;
         }
 
-        if (WHO.equals(newMsg)) {
+        if (WHO.equalsIgnoreCase(newMsg)) {
             sendWho();
         } else {
             send(getName() + ": " + newMsg);
