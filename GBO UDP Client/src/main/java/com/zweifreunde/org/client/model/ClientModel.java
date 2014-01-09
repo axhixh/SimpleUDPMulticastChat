@@ -9,6 +9,8 @@ import java.util.ResourceBundle;
 
 public class ClientModel {
 
+    private static final String WHO = "!WHO";
+
     private ArrayList<NewMessagesListener> newMsgListeners;
     private ArrayList<SendMessageListener> sendMsgListener;
 
@@ -41,8 +43,19 @@ public class ClientModel {
         send(MessageFormat.format(hasJoinedMessage, getName()));
     }
 
+    public void sendWho() {
+        send(WHO);
+    }
+
     public void sendMessage(String newMsg) {
-        if (!"".equals(newMsg)) {
+        newMsg = newMsg.trim();
+        if ("".equals(newMsg)) {
+            return;
+        }
+
+        if (WHO.equals(newMsg)) {
+            sendWho();
+        } else {
             send(getName() + ": " + newMsg);
         }
     }
@@ -56,7 +69,11 @@ public class ClientModel {
     }
 
     public void newMessage(String msg) {
-        notifyListeners(msg);
+        if (WHO.equals(msg)) {
+            send(MessageFormat.format(ResourceBundle.getBundle("com/zweifreunde/etc/Messages").getString("user online"), getName()));
+        } else {
+            notifyListeners(msg);
+        }
     }
 
     public void addSendMessageListener(SendMessageListener listener) {
