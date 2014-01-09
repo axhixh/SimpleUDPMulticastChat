@@ -16,6 +16,8 @@ public class ClientModel {
 
     private String ID;
 
+    private int roomNo;
+
     public ClientModel() {
         this.newMsgListeners = new ArrayList<>();
         this.sendMsgListener = new ArrayList<>();
@@ -94,5 +96,13 @@ public class ClientModel {
 
     public String getName() {
         return this.ID;
+    }
+
+    public void setRoom(int room) {
+        this.roomNo = room;
+    }
+
+    public int getRoom() {
+        return roomNo;
     }
 }

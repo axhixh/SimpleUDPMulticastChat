@@ -27,7 +27,7 @@ public class Client {
         clientModel.addNewMessageListener(cmv);
 
         // UDP Multicast
-        final UDPMulticastClient client = new UDPMulticastClient(clientModel, 1337);
+        final UDPMulticastClient client = new UDPMulticastClient(clientModel, clientModel.getRoom() + 9002);
         client.startListening();
         clientModel.sendHello();
     }

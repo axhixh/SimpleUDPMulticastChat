@@ -6,32 +6,38 @@ import java.awt.event.ActionListener;
 import com.zweifreunde.org.client.model.ClientModel;
 import com.zweifreunde.org.client.view.ClientInputView;
 import com.zweifreunde.org.client.view.ClientNameDialog;
+import com.zweifreunde.org.client.view.ClientRoomDialog;
 import com.zweifreunde.org.client.view.ClientWindow;
 
 public class ClientInputController implements ActionListener {
-	private ClientInputView view;
-	private ClientModel model;
 
-	public ClientInputController(ClientModel model, ClientInputView view,
-			ClientWindow window) {
+    private ClientInputView view;
+    private ClientModel model;
 
-		this.view = view;
-		this.view.grabFocus();
-		this.view.addActionListener(this);
-		this.model = model;
-		ClientNameDialog dialog = new ClientNameDialog(window);
-		String name = dialog.askForName();
-		this.view.setEditable(true);
-		this.model.setName(name);
-	}
+    public ClientInputController(ClientModel model, ClientInputView view,
+            ClientWindow window) {
 
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		ClientInputView input = (ClientInputView) e.getSource();
-		String msg = input.getText();
+        this.view = view;
+        this.view.grabFocus();
+        this.view.addActionListener(this);
+        this.model = model;
+        ClientNameDialog dialog = new ClientNameDialog(window);
+        String name = dialog.askForName();
+        ClientRoomDialog roomDialog = new ClientRoomDialog(window);
+        this.model.setRoom(roomDialog.askForRoom());
+        this.view.setEditable(true);
+        this.model.setName(name);
 
-		this.model.sendMessage(msg);
-		this.view.setText("");
-	}
+        window.setTitle(window.getTitle() + ": " + model.getRoom());
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        ClientInputView input = (ClientInputView) e.getSource();
+        String msg = input.getText();
+
+        this.model.sendMessage(msg);
+        this.view.setText("");
+    }
 
 }
